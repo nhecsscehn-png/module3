@@ -1,0 +1,3 @@
+[submodule "sous_module3"]
+	path = sous_module3
+	url = git@github.com:nhecsscehn-png/sous_module3.git
