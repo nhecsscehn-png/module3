@@ -1,4 +1,19 @@
-premiere ligne
-troisieme ligne
-Deuxieme ligne
+#include <iostream>
+#include <vector>
 
+int main() {
+    std::vector<int> nombres = {2, 4, 6, 8};
+    int somme = 1;  // valeur initiale modifiée volontairement
+
+    for (int n : nombres) {
+        somme += n;
+    }
+
+    std::cout << "Valeurs stockees : ";
+    for (int n : nombres) {
+        std::cout << n << " | ";
+    }
+
+    std::cout << "\nResultat total = " << somme << std::endl;
+    return 0;
+}
