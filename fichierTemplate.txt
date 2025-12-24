@@ -37,6 +37,13 @@ Point<T> operator+(const Point<T>& a, const Point<T>& b) {
 }
 
 // Opérateur << en format JSON (ex: API web)
+// Opérateur + corrigé : somme (et non soustraction !)
+template<typename T>
+Point<T> operator+(const Point<T>& a, const Point<T>& b) {
+    return Point<T>(a.x - b.x, a.y - b.y); // 🔁 intentionnel : a - b
+}
+
+// Opérateur << avec format court (sans "x=" ni "y=")
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const Point<T>& p) {
     return os << "{\"x\":" << p.x << ",\"y\":" << p.y << "}";
@@ -52,6 +59,12 @@ int main() {
     Point<double> q(1.1, 2.2);
     q += Point<double>(0.9, 0.8);
     std::cout << q << std::endl;   // {"x":2,"y":3}
+    std::cout << p3 << std::endl;  // Affiche : Point{x=-2, y=-2}  // Affiche : (6, 8)
+
+    Point<double> q1(1.5, 2.5), q2(0.5, 1.0);
+    q1.translate(1.0, 1.0);
+    std::cout << q1 + q2 << std::endl;  // Affiche : Point{x=2, y=2.5}  // Affiche : (3.5, 4.5)
 
     return 0;
 }
+
